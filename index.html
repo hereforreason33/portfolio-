@@ -1,262 +1,345 @@
+
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio | A Little Swallow</title>
+<title>Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Noto+Serif+SC:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@300;400&display=swap');
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+:root {
+  --paper: #f5f3ee;
+  --ink: #262b2b;
+  --water: #dce5e5;
+  --muted: #8a9290;
+}
+
 body {
-  background: #f5f3ed;
-  color: #263b3b;
-  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "DM Sans", "Noto Serif SC", sans-serif;
   overflow-x: hidden;
 }
 
+/* Navigation */
+
 nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 28px 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 28px 5%;
-  position: relative;
   z-index: 10;
 }
 
 .logo {
-  font-size: 18px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 400;
+}
+
+.language {
+  display: flex;
+  gap: 12px;
+  font-size: 11px;
   letter-spacing: 1px;
 }
 
-nav a {
-  color: inherit;
-  text-decoration: none;
-  margin-left: 24px;
-  font-size: 14px;
+.language button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
 }
+
+.language button.active {
+  color: var(--ink);
+}
+
+/* Hero */
 
 .hero {
-  min-height: 88vh;
+  min-height: 100vh;
+  height: 900px;
+  max-height: 1100px;
   position: relative;
   overflow: hidden;
-  padding: 70px 8% 20px;
 }
 
-.hero h1 {
-  font-size: clamp(40px, 6vw, 85px);
-  font-weight: 400;
-  font-style: italic;
-  line-height: 1.1;
-  max-width: 900px;
-  position: relative;
-  z-index: 2;
+/* Sky */
+
+.sky {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
 }
 
-.subtitle {
-  margin-top: 25px;
-  letter-spacing: 5px;
-  font-size: 16px;
-}
+/* Water */
 
 .water {
   position: absolute;
-  width: 120%;
-  height: 55%;
-  left: -10%;
+  left: 0;
+  right: 0;
   bottom: 0;
-  background:
-    repeating-linear-gradient(
-      180deg,
-      transparent 0px,
-      transparent 20px,
-      rgba(95, 143, 142, 0.14) 21px,
-      transparent 23px
-    ),
-    linear-gradient(
-      180deg,
-      #c7d8d4,
-      #8baead
-    );
-  border-radius: 50% 50% 0 0;
-  transform: rotate(-2deg);
+  height: 36%;
+  background: var(--water);
+  overflow: hidden;
 }
 
-.ripple {
+.water::before {
+  content: "";
   position: absolute;
-  width: 180px;
-  height: 35px;
-  border: 1px solid rgba(255,255,255,.6);
-  border-radius: 50%;
-  animation: ripple 4s infinite ease-in-out;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(70, 90, 90, 0.12);
 }
 
-.r1 {
-  left: 25%;
-  bottom: 30%;
+/* Water texture */
+
+.water-texture {
+  position: absolute;
+  inset: 0;
+  opacity: 0.25;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 18px,
+      rgba(70, 90, 90, 0.12) 19px,
+      transparent 20px
+    );
 }
 
-.r2 {
-  left: 70%;
-  bottom: 20%;
-  animation-delay: 2s;
-}
-
-@keyframes ripple {
-  0%, 100% {
-    transform: scaleX(1);
-    opacity: .3;
-  }
-  50% {
-    transform: scaleX(1.5);
-    opacity: .8;
-  }
-}
-
-/* Swallow */
+/* Bird */
 
 .bird {
   position: absolute;
-  width: 100px;
-  top: 32%;
-  left: -120px;
-  z-index: 3;
-  animation: fly 12s linear infinite;
+  width: 110px;
+  left: -150px;
+  top: 40%;
+  z-index: 5;
+  animation: fly 6s cubic-bezier(.25,.45,.35,1) forwards;
 }
 
 .bird svg {
   width: 100%;
-  filter: drop-shadow(0 2px 2px rgba(0,0,0,.1));
+  height: auto;
+  overflow: visible;
 }
 
 @keyframes fly {
   0% {
-    left: -120px;
-    top: 30%;
-    transform: rotate(-10deg);
+    left: -150px;
+    top: 42%;
+    transform: rotate(-5deg) scale(.75);
   }
+
   25% {
-    top: 22%;
-    transform: rotate(5deg);
+    top: 30%;
+    transform: rotate(3deg) scale(.9);
   }
-  50% {
-    top: 35%;
-    transform: rotate(-5deg);
+
+  55% {
+    top: 24%;
+    transform: rotate(-2deg) scale(1);
   }
-  75% {
-    top: 25%;
-    transform: rotate(8deg);
+
+  80% {
+    top: 33%;
+    transform: rotate(3deg) scale(.95);
   }
+
   100% {
     left: 110%;
-    top: 30%;
-    transform: rotate(-5deg);
+    top: 38%;
+    transform: rotate(0deg) scale(.85);
   }
 }
 
-/* Sections */
+/* Ripples */
 
-.projects {
-  position: relative;
-  z-index: 4;
+.ripple {
+  position: absolute;
+  width: 80px;
+  height: 30px;
+  border: 1px solid rgba(70, 90, 90, 0.2);
+  border-radius: 50%;
+  bottom: 22%;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  opacity: 0;
+}
+
+.ripple:nth-child(2) {
+  animation: ripple 3s 2s ease-out infinite;
+}
+
+.ripple:nth-child(3) {
+  animation: ripple 3s 2.6s ease-out infinite;
+}
+
+.ripple:nth-child(4) {
+  animation: ripple 3s 3.2s ease-out infinite;
+}
+
+@keyframes ripple {
+  0% {
+    transform: translateX(-50%) scale(.2);
+    opacity: .5;
+  }
+
+  100% {
+    transform: translateX(-50%) scale(3);
+    opacity: 0;
+  }
+}
+
+/* Categories */
+
+.choices {
+  position: absolute;
+  bottom: 12%;
+  left: 0;
+  width: 100%;
+  padding: 0 9%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-  padding: 30px 8% 80px;
+  gap: 50px;
+  opacity: 0;
+  transform: translateY(25px);
+  animation: reveal 1.5s 6s forwards;
+  z-index: 6;
 }
 
-.project {
-  background: rgba(245, 243, 237, .65);
-  border: 1px solid rgba(255,255,255,.5);
-  border-radius: 50%;
-  aspect-ratio: 1 / 1;
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.choice {
+  border-top: 1px solid rgba(40, 50, 50, 0.35);
+  padding-top: 18px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: opacity .3s;
+}
+
+.choice:hover {
+  opacity: .55;
+}
+
+.number {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+
+.choice h2 {
+  font-weight: 300;
+  font-size: 25px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.choice p {
+  font-family: "Noto Serif SC", serif;
+  font-weight: 300;
+  font-size: 13px;
+  color: #737d7b;
+  letter-spacing: 1px;
+}
+
+/* Footer */
+
+.footer {
+  position: absolute;
+  bottom: 28px;
+  left: 5%;
+  right: 5%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  transition: transform .4s, background .4s;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  z-index: 8;
+}
+
+/* Replay */
+
+.replay {
+  position: absolute;
+  right: 5%;
+  top: 100px;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: var(--muted);
+  font-size: 11px;
   cursor: pointer;
+  letter-spacing: 1px;
+  z-index: 10;
 }
 
-.project:hover {
-  transform: translateY(-12px);
-  background: rgba(255,255,255,.8);
-}
-
-.project .number {
-  font-size: 40px;
-  margin-bottom: 15px;
-  font-style: italic;
-}
-
-.project h2 {
-  font-size: 24px;
-  font-weight: 400;
-}
-
-.project p {
-  font-size: 14px;
-  margin-top: 12px;
-  letter-spacing: 3px;
-}
-
-.arrow {
-  margin-top: 20px;
-  font-size: 24px;
-  transition: transform .3s;
-}
-
-.project:hover .arrow {
-  transform: translateX(10px);
-}
-
-footer {
-  padding: 30px;
-  text-align: center;
-  font-size: 12px;
-  letter-spacing: 3px;
-  color: #688583;
-}
+/* Responsive */
 
 @media (max-width: 700px) {
-  nav {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  nav div:last-child {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  nav a {
-    margin: 8px;
-  }
-
   .hero {
-    min-height: 65vh;
-    padding-top: 50px;
+    height: 100svh;
+    min-height: 700px;
   }
 
-  .projects {
+  .water {
+    height: 40%;
+  }
+
+  .choices {
     grid-template-columns: 1fr;
-    padding: 20px 15%;
+    gap: 24px;
+    bottom: 12%;
+    padding: 0 8%;
   }
 
-  .project {
-    width: 100%;
+  .choice {
+    padding-top: 10px;
+  }
+
+  .number {
+    margin-bottom: 8px;
+  }
+
+  .choice h2 {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  .choice p {
+    font-size: 12px;
+  }
+
+  .footer {
+    bottom: 18px;
   }
 
   .bird {
-    width: 70px;
+    width: 85px;
   }
 }
 </style>
@@ -265,79 +348,148 @@ footer {
 <body>
 
 <nav>
-  <div class="logo">Portfolio / 2026</div>
-  <div>
-    <a href="#home">Home</a>
-    <a href="#social">Social</a>
-    <a href="#design">Design</a>
-    <a href="#video">Video</a>
+  <div class="logo">PORTFOLIO / 2026</div>
+
+  <div class="language">
+    <button id="zhBtn" class="active" onclick="changeLanguage('zh')">中文</button>
+    <span>/</span>
+    <button id="enBtn" onclick="changeLanguage('en')">EN</button>
   </div>
 </nav>
 
-<section class="hero" id="home">
+<main class="hero">
 
-  <h1>
-    A little swallow,<br>
-    across my creative journey.
-  </h1>
+  <div class="sky"></div>
 
-  <p class="subtitle">
-    一只燕子，穿过我的创作实践。
-  </p>
-
-  <div class="bird">
+  <div class="bird" id="bird">
     <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-      <path d="M100 55
-      C70 15 20 5 5 0
-      C30 35 45 55 55 65
-      C25 60 5 75 0 95
-      C35 90 60 80 80 75
-      C100 95 115 100 135 95
-      C155 80 165 60 180 45
-      L200 30
-      C170 35 150 45 130 50
-      C120 40 110 35 100 55Z"
-      fill="#284b4b"/>
+
+      <path
+        d="M20 62
+           C45 40, 65 38, 90 48
+           C108 34, 130 12, 160 8
+           C142 35, 125 52, 115 63
+           C145 58, 170 55, 190 65
+           C160 70, 135 76, 115 77
+           C100 90, 80 100, 58 103
+           C75 85, 85 77, 90 68
+           C65 78, 45 80, 20 62 Z"
+        fill="#262b2b"/>
+
     </svg>
   </div>
 
-  <div class="water"></div>
-  <div class="ripple r1"></div>
-  <div class="ripple r2"></div>
+  <div class="water">
+    <div class="water-texture"></div>
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+  </div>
 
-</section>
+  <button class="replay" onclick="startAnimation()" id="replayBtn">
+    ↻
+  </button>
 
-<section class="projects">
+  <section class="choices">
 
-  <a href="#social" class="project" id="social"
-  style="color:inherit;text-decoration:none;">
-    <div class="number">01</div>
-    <h2>Social Media</h2>
-    <p>账号运营</p>
-    <div class="arrow">→</div>
-  </a>
+    <a href="#" class="choice">
+      <div class="number">01 /</div>
+      <h2 id="title1">社交媒体</h2>
+      <p id="desc1">账号运营与内容策划</p>
+    </a>
 
-  <a href="#design" class="project" id="design"
-  style="color:inherit;text-decoration:none;">
-    <div class="number">02</div>
-    <h2>Visual Design</h2>
-    <p>策展与视觉设计</p>
-    <div class="arrow">→</div>
-  </a>
+    <a href="#" class="choice">
+      <div class="number">02 /</div>
+      <h2 id="title2">视觉设计</h2>
+      <p id="desc2">视觉表达与设计实践</p>
+    </a>
 
-  <a href="#video" class="project" id="video"
-  style="color:inherit;text-decoration:none;">
-    <div class="number">03</div>
-    <h2>Video</h2>
-    <p>视频剪辑</p>
-    <div class="arrow">→</div>
-  </a>
+    <a href="#" class="choice">
+      <div class="number">03 /</div>
+      <h2 id="title3">影像</h2>
+      <p id="desc3">视频与影像创作</p>
+    </a>
 
-</section>
+  </section>
 
-<footer>
-  A LITTLE SWALLOW · MY CREATIVE WORLD
-</footer>
+  <footer class="footer">
+    <span id="footerLeft">个人作品集</span>
+    <span>2026</span>
+  </footer>
+
+</main>
+
+<script>
+
+const translations = {
+  zh: {
+    title1: "社交媒体",
+    desc1: "账号运营与内容策划",
+    title2: "视觉设计",
+    desc2: "视觉表达与设计实践",
+    title3: "影像",
+    desc3: "视频与影像创作",
+    footer: "个人作品集",
+    replay: "重新播放"
+  },
+
+  en: {
+    title1: "Social Media",
+    desc1: "Content & Account Management",
+    title2: "Visual Design",
+    desc2: "Visual Communication & Design",
+    title3: "Video",
+    desc3: "Moving Image & Video",
+    footer: "Selected Works",
+    replay: "Replay"
+  }
+};
+
+function changeLanguage(lang) {
+
+  const t = translations[lang];
+
+  document.getElementById("title1").textContent = t.title1;
+  document.getElementById("desc1").textContent = t.desc1;
+
+  document.getElementById("title2").textContent = t.title2;
+  document.getElementById("desc2").textContent = t.desc2;
+
+  document.getElementById("title3").textContent = t.title3;
+  document.getElementById("desc3").textContent = t.desc3;
+
+  document.getElementById("footerLeft").textContent = t.footer;
+
+  document.getElementById("replayBtn").textContent = "↻ " + t.replay;
+
+  document.getElementById("zhBtn").classList.toggle("active", lang === "zh");
+  document.getElementById("enBtn").classList.toggle("active", lang === "en");
+}
+
+/* Replay animation */
+
+function startAnimation() {
+
+  const bird = document.getElementById("bird");
+  const choices = document.querySelector(".choices");
+
+  bird.style.animation = "none";
+  choices.style.animation = "none";
+
+  bird.offsetHeight;
+
+  bird.style.animation = "fly 6s cubic-bezier(.25,.45,.35,1) forwards";
+
+  choices.style.opacity = "0";
+  choices.style.transform = "translateY(25px)";
+
+  choices.offsetHeight;
+
+  choices.style.animation = "reveal 1.5s 6s forwards";
+}
+
+</script>
 
 </body>
 </html>
+
