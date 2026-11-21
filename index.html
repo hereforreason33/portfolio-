@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio | A Little Swallow</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@300;400&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5f3ed;
+  color: #263b3b;
+  font-family: 'Playfair Display', 'Noto Serif SC', serif;
+  overflow-x: hidden;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 5%;
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+nav a {
+  color: inherit;
+  text-decoration: none;
+  margin-left: 24px;
+  font-size: 14px;
+}
+
+.hero {
+  min-height: 88vh;
+  position: relative;
+  overflow: hidden;
+  padding: 70px 8% 20px;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6vw, 85px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.1;
+  max-width: 900px;
+  position: relative;
+  z-index: 2;
+}
+
+.subtitle {
+  margin-top: 25px;
+  letter-spacing: 5px;
+  font-size: 16px;
+}
+
+.water {
+  position: absolute;
+  width: 120%;
+  height: 55%;
+  left: -10%;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 20px,
+      rgba(95, 143, 142, 0.14) 21px,
+      transparent 23px
+    ),
+    linear-gradient(
+      180deg,
+      #c7d8d4,
+      #8baead
+    );
+  border-radius: 50% 50% 0 0;
+  transform: rotate(-2deg);
+}
+
+.ripple {
+  position: absolute;
+  width: 180px;
+  height: 35px;
+  border: 1px solid rgba(255,255,255,.6);
+  border-radius: 50%;
+  animation: ripple 4s infinite ease-in-out;
+}
+
+.r1 {
+  left: 25%;
+  bottom: 30%;
+}
+
+.r2 {
+  left: 70%;
+  bottom: 20%;
+  animation-delay: 2s;
+}
+
+@keyframes ripple {
+  0%, 100% {
+    transform: scaleX(1);
+    opacity: .3;
+  }
+  50% {
+    transform: scaleX(1.5);
+    opacity: .8;
+  }
+}
+
+/* Swallow */
+
+.bird {
+  position: absolute;
+  width: 100px;
+  top: 32%;
+  left: -120px;
+  z-index: 3;
+  animation: fly 12s linear infinite;
+}
+
+.bird svg {
+  width: 100%;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.1));
+}
+
+@keyframes fly {
+  0% {
+    left: -120px;
+    top: 30%;
+    transform: rotate(-10deg);
+  }
+  25% {
+    top: 22%;
+    transform: rotate(5deg);
+  }
+  50% {
+    top: 35%;
+    transform: rotate(-5deg);
+  }
+  75% {
+    top: 25%;
+    transform: rotate(8deg);
+  }
+  100% {
+    left: 110%;
+    top: 30%;
+    transform: rotate(-5deg);
+  }
+}
+
+/* Sections */
+
+.projects {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  padding: 30px 8% 80px;
+}
+
+.project {
+  background: rgba(245, 243, 237, .65);
+  border: 1px solid rgba(255,255,255,.5);
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: transform .4s, background .4s;
+  cursor: pointer;
+}
+
+.project:hover {
+  transform: translateY(-12px);
+  background: rgba(255,255,255,.8);
+}
+
+.project .number {
+  font-size: 40px;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.project h2 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.project p {
+  font-size: 14px;
+  margin-top: 12px;
+  letter-spacing: 3px;
+}
+
+.arrow {
+  margin-top: 20px;
+  font-size: 24px;
+  transition: transform .3s;
+}
+
+.project:hover .arrow {
+  transform: translateX(10px);
+}
+
+footer {
+  padding: 30px;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #688583;
+}
+
+@media (max-width: 700px) {
+  nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav div:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav a {
+    margin: 8px;
+  }
+
+  .hero {
+    min-height: 65vh;
+    padding-top: 50px;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+    padding: 20px 15%;
+  }
+
+  .project {
+    width: 100%;
+  }
+
+  .bird {
+    width: 70px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">Portfolio / 2026</div>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#social">Social</a>
+    <a href="#design">Design</a>
+    <a href="#video">Video</a>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+
+  <h1>
+    A little swallow,<br>
+    across my creative journey.
+  </h1>
+
+  <p class="subtitle">
+    一只燕子，穿过我的创作实践。
+  </p>
+
+  <div class="bird">
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 55
+      C70 15 20 5 5 0
+      C30 35 45 55 55 65
+      C25 60 5 75 0 95
+      C35 90 60 80 80 75
+      C100 95 115 100 135 95
+      C155 80 165 60 180 45
+      L200 30
+      C170 35 150 45 130 50
+      C120 40 110 35 100 55Z"
+      fill="#284b4b"/>
+    </svg>
+  </div>
+
+  <div class="water"></div>
+  <div class="ripple r1"></div>
+  <div class="ripple r2"></div>
+
+</section>
+
+<section class="projects">
+
+  <a href="#social" class="project" id="social"
+  style="color:inherit;text-decoration:none;">
+    <div class="number">01</div>
+    <h2>Social Media</h2>
+    <p>账号运营</p>
+    <div class="arrow">→</div>
+  </a>
+
+  <a href="#design" class="project" id="design"
+  style="color:inherit;text-decoration:none;">
+    <div class="number">02</div>
+    <h2>Visual Design</h2>
+    <p>策展与视觉设计</p>
+    <div class="arrow">→</div>
+  </a>
+
+  <a href="#video" class="project" id="video"
+  style="color:inherit;text-decoration:none;">
+    <div class="number">03</div>
+    <h2>Video</h2>
+    <p>视频剪辑</p>
+    <div class="arrow">→</div>
+  </a>
+
+</section>
+
+<footer>
+  A LITTLE SWALLOW · MY CREATIVE WORLD
+</footer>
+
+</body>
+</html>
